@@ -16,7 +16,7 @@ export default function Home() {
       <header className="bg-linear-to-r from-green-600 to-blue-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            BD Address Pro Demo
+            BD Address Pro Demo <span className='text-xs'>v-1.1.2</span>
           </h1>
           <p className="text-lg opacity-90">
             Complete Bangladesh location database with {stats.totalDivisions} divisions, {stats.totalDistricts} districts, and {stats.totalUpazilas} upazilas
