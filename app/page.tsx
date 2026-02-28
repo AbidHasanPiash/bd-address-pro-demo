@@ -16,12 +16,12 @@ export default function Home() {
       <header className="bg-linear-to-r from-green-600 to-blue-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            BD Address Pro Demo <span className='text-xs'>v-1.1.2</span>
+            BD Address Pro Demo <span className='text-xs'>v-1.2.0</span>
           </h1>
           <p className="text-lg opacity-90">
-            Complete Bangladesh location database with {stats.totalDivisions} divisions, {stats.totalDistricts} districts, and {stats.totalUpazilas} upazilas
+            Complete Bangladesh location database with {stats.totalDivisions} divisions, {stats.totalDistricts} districts, {stats.totalUpazilas} upazilas, and {stats.totalUnions} unions
           </p>
-          <p className='text-xs italic'>Last updated: 26 February, 2026</p>
+          <p className='text-xs italic'>Last updated: 28 February, 2026</p>
         </div>
       </header>
 
@@ -62,6 +62,7 @@ export default function Home() {
                 <li>• getAllDivisions()</li>
                 <li>• getAllDistricts()</li>
                 <li>• getAllUpazilas()</li>
+                <li>• getAllUnions()</li>
               </ul>
             </div>
 
@@ -94,6 +95,17 @@ export default function Home() {
               </ul>
             </div>
 
+            <div className="p-4 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
+              <h3 className="font-semibold text-teal-800 dark:text-teal-300 mb-2">Union Functions</h3>
+              <ul className="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• getUnionById(id)</li>
+                <li>• getUnionBySlug(slug)</li>
+                <li>• getUnionsByUpazila(id)</li>
+                <li>• getUnionsByDistrict(id)</li>
+                <li>• getUnionsByDivision(id)</li>
+              </ul>
+            </div>
+
             <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
               <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">Search Functions</h3>
               <ul className="space-y-1 text-gray-700 dark:text-gray-300">
@@ -101,8 +113,7 @@ export default function Home() {
                 <li>• quickSearch(query)</li>
                 <li>• autocomplete(query)</li>
                 <li>• fuzzySearch(query)</li>
-                <li>• searchBengali(query)</li>
-                <li>• searchEnglish(query)</li>
+                <li>• searchUnions(query)</li>
               </ul>
             </div>
 
@@ -117,13 +128,14 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="p-4 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
-              <h3 className="font-semibold text-teal-800 dark:text-teal-300 mb-2">Relationship Functions</h3>
+            <div className="p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg">
+              <h3 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Relationship Functions</h3>
               <ul className="space-y-1 text-gray-700 dark:text-gray-300">
                 <li>• getDivisionOfDistrict(id)</li>
                 <li>• getDistrictOfUpazila(id)</li>
+                <li>• getUpazilaOfUnion(id)</li>
                 <li>• getFullAddress(upazilaId)</li>
-                <li>• getFullAddressBySlug(slug)</li>
+                <li>• getFullAddressOfUnion(unionId)</li>
               </ul>
             </div>
 
@@ -144,6 +156,27 @@ export default function Home() {
                 <li>• getDivisionOptions()</li>
                 <li>• getDistrictOptions(divId?)</li>
                 <li>• getUpazilaOptions(distId?)</li>
+                <li>• getUnionOptions(upazilaId?)</li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+              <h3 className="font-semibold text-amber-800 dark:text-amber-300 mb-2">Postal Code Functions</h3>
+              <ul className="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• getDistrictPostalCode(id)</li>
+                <li>• getUpazilaPostalCode(id)</li>
+                <li>• getUnionPostalCode(id)</li>
+                <li>• getPostalInfo(upazilaId)</li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-slate-50 dark:bg-slate-900/20 rounded-lg">
+              <h3 className="font-semibold text-slate-800 dark:text-slate-300 mb-2">Raw Data Access</h3>
+              <ul className="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• getRawDivisions()</li>
+                <li>• getRawDistricts()</li>
+                <li>• getRawUpazilas()</li>
+                <li>• getRawUnions()</li>
               </ul>
             </div>
           </div>

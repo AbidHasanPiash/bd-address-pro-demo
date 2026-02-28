@@ -11,17 +11,20 @@ import {
   getAllDivisions,
   getAllDistricts,
   getAllUpazilas,
+  getAllUnions,
 } from 'bd-address-pro';
 
 export default function ValidationChecker() {
   const divisions = getAllDivisions();
   const districts = getAllDistricts();
   const upazilas = getAllUpazilas();
+  const unions = getAllUnions();
 
   // ID Validation State
   const [divisionId, setDivisionId] = useState('');
   const [districtId, setDistrictId] = useState('');
   const [upazilaId, setUpazilaId] = useState('');
+  const [unionId, setUnionId] = useState('');
 
   // Relationship Validation State
   const [relDistrictId, setRelDistrictId] = useState('');
@@ -31,6 +34,9 @@ export default function ValidationChecker() {
   const [relUpazilaId2, setRelUpazilaId2] = useState('');
   const [relDivisionId2, setRelDivisionId2] = useState('');
 
+  // Check if union exists (simple validation by checking if it's in the list)
+  const isValidUnionId = (id: number) => unions.some(u => u.id === id);
+
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold text-gray-800 dark:text-white">Validation Functions</h2>
@@ -39,7 +45,7 @@ export default function ValidationChecker() {
       <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <h3 className="font-semibold text-gray-800 dark:text-white mb-4">ID Validation</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Division ID Check */}
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -105,6 +111,29 @@ export default function ValidationChecker() {
                   : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
               }`}>
                 {isValidUpazila(Number(upazilaId)) ? '✓ Valid' : '✗ Invalid'}
+              </div>
+            )}
+          </div>
+
+          {/* Union ID Check */}
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              isValidUnion(id)
+            </label>
+            <input
+              type="number"
+              value={unionId}
+              onChange={(e) => setUnionId(e.target.value)}
+              placeholder="Enter Union ID (1-4579)"
+              className="w-full p-2 border border-gray-300 rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            />
+            {unionId && (
+              <div className={`p-2 rounded text-center font-medium ${
+                isValidUnionId(Number(unionId))
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
+              }`}>
+                {isValidUnionId(Number(unionId)) ? '✓ Valid' : '✗ Invalid'}
               </div>
             )}
           </div>

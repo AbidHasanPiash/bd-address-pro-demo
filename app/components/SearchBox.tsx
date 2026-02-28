@@ -7,13 +7,14 @@ import {
   searchDivisions,
   searchDistricts,
   searchUpazilas,
+  searchUnions,
   autocomplete,
   fuzzySearch,
   searchBengali,
   searchEnglish,
 } from 'bd-address-pro';
 
-type SearchType = 'all' | 'divisions' | 'districts' | 'upazilas' | 'autocomplete' | 'fuzzy' | 'bengali' | 'english' | 'quick';
+type SearchType = 'all' | 'divisions' | 'districts' | 'upazilas' | 'unions' | 'autocomplete' | 'fuzzy' | 'bengali' | 'english' | 'quick';
 
 export default function SearchBox() {
   const [query, setQuery] = useState('');
@@ -40,6 +41,9 @@ export default function SearchBox() {
       case 'upazilas':
         searchResults = searchUpazilas(query);
         break;
+      case 'unions':
+        searchResults = searchUnions(query);
+        break;
       case 'autocomplete':
         searchResults = autocomplete(query, { limit: 10 });
         break;
@@ -62,11 +66,12 @@ export default function SearchBox() {
   };
 
   const searchTypes: { value: SearchType; label: string; description: string }[] = [
-    { value: 'all', label: 'Search All', description: 'Search across divisions, districts, and upazilas' },
+    { value: 'all', label: 'Search All', description: 'Search across divisions, districts, upazilas, and unions' },
     { value: 'quick', label: 'Quick Search', description: 'Returns first matching item of any type' },
     { value: 'divisions', label: 'Divisions Only', description: 'Search only in divisions' },
     { value: 'districts', label: 'Districts Only', description: 'Search only in districts' },
     { value: 'upazilas', label: 'Upazilas Only', description: 'Search only in upazilas' },
+    { value: 'unions', label: 'Unions Only', description: 'Search only in unions (4,579 unions)' },
     { value: 'autocomplete', label: 'Autocomplete', description: 'Get autocomplete suggestions (prefix matching)' },
     { value: 'fuzzy', label: 'Fuzzy Search', description: 'Search with higher typo tolerance' },
     { value: 'bengali', label: 'Bengali Names', description: 'Search only in Bengali names' },
@@ -136,9 +141,11 @@ export default function SearchBox() {
         <h3 className="font-semibold text-yellow-800 dark:text-yellow-300 mb-2">💡 Search Tips</h3>
         <ul className="text-sm text-yellow-700 dark:text-yellow-400 space-y-1">
           <li>• Try &quot;Dhaka&quot; or &quot;ঢাকা&quot; to find divisions and districts</li>
+          <li>• Search &quot;আমতলী&quot; to find unions with Bengali names</li>
           <li>• Use &quot;Fuzzy Search&quot; for typo tolerance (e.g., &quot;Dahka&quot;)</li>
           <li>• Use &quot;Autocomplete&quot; for prefix matching (e.g., &quot;Dha&quot;)</li>
           <li>• &quot;Quick Search&quot; returns the first matching item only</li>
+          <li>• &quot;Unions Only&quot; searches through all 4,579 unions</li>
         </ul>
       </div>
     </div>
